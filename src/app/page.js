@@ -1,10 +1,13 @@
+'use client';
+
+import Image from "next/image";
 import React, { useState, useEffect, useRef } from 'react';
 
 const InfantLearningApp = () => {
   // Define all characters: A-Z followed by 1-10
   const allCharacters = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '',
     '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'
   ];
   
@@ -170,8 +173,11 @@ const InfantLearningApp = () => {
           {allCharacters.map((char, index) => (
             <div
               key={index}
-              className={`w-12 h-12 ${getRandomColor(index)} rounded-lg shadow-md flex items-center justify-center cursor-pointer hover:scale-110 transition-transform ${currentIndex === index ? 'ring-4 ring-blue-300' : ''}`}
-              onClick={() => handleCharacterListClick(index)}
+              className={`${char == "" ? 
+                  `w-full h-12 rounded-lg` : 
+                  `w-12 h-12 ${getRandomColor(index)} rounded-lg shadow-md flex items-center justify-center cursor-pointer hover:scale-110 transition-transform ${currentIndex === index ? `ring-4 ring-blue-300` : ''}`
+                }`}
+              onClick={() => char == "" ? null:handleCharacterListClick(index)}
             >
               <span className="text-white font-bold">{char}</span>
             </div>
